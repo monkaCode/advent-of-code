@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 
 	lib "monkadev.xyz/aoc"
@@ -26,13 +25,13 @@ func Day1B() {
 			}
 		}
 
-		var times int = int(math.Floor(float64(location / 100)))
+		var times int = int(location / 100)
 		if times < 0 {
 			times *= -1
 		}
 
 		zeroAmount += times
-		if location <= 0 {
+		if location <= 0 && (location+value != 0) {
 			zeroAmount++
 		}
 
@@ -40,7 +39,6 @@ func Day1B() {
 		if location < 0 {
 			location += 100
 		}
-
 	}
 	fmt.Println(zeroAmount)
 }
