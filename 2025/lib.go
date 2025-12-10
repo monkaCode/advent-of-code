@@ -26,3 +26,20 @@ func Read(path string) []string {
 
 	return array
 }
+
+func Write(path string, lines []string) {
+	f, err := os.Create(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+	for _, line := range lines {
+		_, err = w.WriteString(line + "\n")
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	w.Flush()
+}
